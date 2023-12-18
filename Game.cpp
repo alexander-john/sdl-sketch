@@ -34,6 +34,19 @@ bool Game::initialize() {
 		return false;
 	}
 
+	// create renderer
+	mRenderer = SDL_CreateRenderer(
+		mWindow,			// window to create renderer
+		-1,					// usually -1
+		SDL_RENDERER_ACCELERATED | SDL_RENDERER_PRESENTVSYNC
+	);
+
+	// if renderer fails
+	if (!mRenderer) {
+		SDL_Log("Failed to create renderer: %s", SDL_GetError());
+		return false;
+	}
+
 	return true;
 }
 
@@ -49,7 +62,7 @@ void Game::shutdown() {
 // iterates game loop
 void Game::runLoop() {
 	while (mIsRunning) {
-		//processInput();
+		processInput();
 
 		//updateGame();
 
