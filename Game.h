@@ -31,7 +31,7 @@ private:
 
 	//void updateGame();
 
-	//void generateOutput();
+	void generateOutput();
 
 	// SDL window
 	SDL_Window* mWindow;

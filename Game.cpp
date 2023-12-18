@@ -55,6 +55,9 @@ void Game::shutdown() {
 	// destroy window
 	SDL_DestroyWindow(mWindow);
 
+	// destroy renderer
+	SDL_DestroyRenderer(mRenderer);
+
 	// quit SDL
 	SDL_Quit();
 }
@@ -66,7 +69,7 @@ void Game::runLoop() {
 
 		//updateGame();
 
-		//generateOutput();
+		generateOutput();
 	}
 }
 
@@ -90,4 +93,38 @@ void Game::processInput() {
 	if (state[SDL_SCANCODE_ESCAPE]) {
 		mIsRunning = false;
 	}
+}
+
+void Game::generateOutput() {
+	// specify drawing color
+	SDL_SetRenderDrawColor(
+		mRenderer,			// renderer
+		150,				// R
+		50,					// G
+		55,					// B
+		255					// A
+	);
+
+	// clear current buffer with drawing color
+	SDL_RenderClear(mRenderer);
+
+	SDL_SetRenderDrawColor(
+		mRenderer,			// renderer
+		50,					// R
+		50,					// G
+		255,				// B
+		255					// A
+	);
+
+	// draw rectangle
+	SDL_Rect block{
+		200,				// top left x
+		50,					// top left y
+		100,				// width
+		50					// height
+	}; // draw rectangle to current buffer
+	SDL_RenderFillRect(mRenderer, &block);
+
+	// update buffer with rendering performed since
+	SDL_RenderPresent(mRenderer);
 }
