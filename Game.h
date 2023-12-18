@@ -14,7 +14,7 @@ struct Vector2 {
 class Game {
 public:
 	// constructor
-	Game();
+	//Game();
 
 	// initialize game
 	bool initialize();
@@ -27,9 +27,11 @@ public:
 
 private:
 	// helper functions
-	void processInput();
+	//void processInput();
 
-	void updateGame();
+	//void updateGame();
+
+	//void generateOutput();
 
 	// SDL window
 	SDL_Window* mWindow;
@@ -41,8 +43,8 @@ private:
 	bool mIsRunning;
 
 	// direction of paddle
-	int paddleDir;
+	//int paddleDir;
 
 	// position of paddle
-	vect
+	//Vector2 mPaddlePos;
 };
