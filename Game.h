@@ -27,7 +27,7 @@ public:
 
 private:
 	// helper functions
-	//void processInput();
+	void processInput();
 
 	//void updateGame();
 

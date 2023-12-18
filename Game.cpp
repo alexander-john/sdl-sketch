@@ -56,3 +56,25 @@ void Game::runLoop() {
 		//generateOutput();
 	}
 }
+
+// process input
+void Game::processInput() {
+	SDL_Event event;
+
+	// while there are still events in queue
+	while (SDL_PollEvent(&event)) {
+		switch (event.type) {
+		case SDL_QUIT:		// SDL_QUIT when user tries to close window
+			mIsRunning = false;
+			break;
+		}
+	}
+
+	// get state of keyboard
+	const Uint8* state = SDL_GetKeyboardState(NULL);
+
+	// if escape is pressed, end loop
+	if (state[SDL_SCANCODE_ESCAPE]) {
+		mIsRunning = false;
+	}
+}
