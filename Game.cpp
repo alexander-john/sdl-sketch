@@ -6,7 +6,7 @@
 #include "Game.h"
 
 // global variables
-const int thickness = 15;
+const int thickness = 30;
 
 // call game constructor and initialize variables
 Game::Game()
