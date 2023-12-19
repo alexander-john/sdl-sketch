@@ -14,7 +14,7 @@ struct Vector2 {
 class Game {
 public:
 	// constructor
-	//Game();
+	Game();
 
 	// initialize game
 	bool initialize();
@@ -29,7 +29,7 @@ private:
 	// helper functions
 	void processInput();
 
-	//void updateGame();
+	void updateGame();
 
 	void generateOutput();
 
@@ -42,9 +42,12 @@ private:
 	// is running?
 	bool mIsRunning;
 
-	// direction of paddle
-	//int paddleDir;
+	// Number of ticks since start of game
+	Uint32 mTicksCount;
 
-	// position of paddle
-	//Vector2 mPaddlePos;
+	// position of block
+	Vector2 mBlockPos;
+
+	// block direction 
+	int mBlockDir;
 };
