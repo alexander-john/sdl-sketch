@@ -14,7 +14,8 @@ Game::Game()
 	, mRenderer(nullptr)
 	, mIsRunning(true)
 	, mTicksCount(0)
-	, mBlockDir(0)
+	, mBlockDirY(0)
+	, mBlockDirX(0)
 	, mBlockPos{0,0}
 {}
 
@@ -110,17 +111,28 @@ void Game::processInput() {
 		mIsRunning = false;
 	}
 
-	// update block direction based on W/S keys
-	mBlockDir = 0;
+	// update block direction based on W/S/A/D keys
+	mBlockDirY = 0;
+	mBlockDirX = 0;
 
 	// move up
 	if (state[SDL_SCANCODE_W]) {
-		mBlockDir -= 1;
+		mBlockDirY -= 1;
 	}
 
 	// move down
 	if (state[SDL_SCANCODE_S]) {
-		mBlockDir += 1;
+		mBlockDirY += 1;
+	}
+
+	// move left
+	if (state[SDL_SCANCODE_A]) {
+		mBlockDirX -= 1;
+	}
+
+	// move right
+	if (state[SDL_SCANCODE_D]) {
+		mBlockDirX += 1;
 	}
 }
 
@@ -233,8 +245,8 @@ void Game::updateGame() {
 	}
 
 	// update block based on delta time
-	if (mBlockDir != 0) {
-		mBlockPos.y += mBlockDir * 300.0f * deltaTime;
+	if (mBlockDirY != 0) {
+		mBlockPos.y += mBlockDirY * 300.0f * deltaTime;
 
 		// make sure block does not move off screen
 		if (mBlockPos.y < (thickness / 2.0f)) {
@@ -244,6 +256,21 @@ void Game::updateGame() {
 		}
 		else if (mBlockPos.y > (768.0f - thickness / 2.0f)) {
 			mBlockPos.y = 768.0f - (thickness / 2.0f);
+		}
+	}
+
+	// update block based on delta time
+	if (mBlockDirX != 0) {
+		mBlockPos.x += mBlockDirX * 300.0f * deltaTime;
+
+		// make sure block does not move off screen
+		if (mBlockPos.x < (thickness / 2.0f)) {
+
+			mBlockPos.x = thickness / 2.0f;
+
+		}
+		else if (mBlockPos.x > (1024.0f - thickness / 2.0f)) {
+			mBlockPos.x = 1024.0f - (thickness / 2.0f);
 		}
 	}
 }

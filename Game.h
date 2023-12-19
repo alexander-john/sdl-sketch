@@ -48,6 +48,9 @@ private:
 	// position of block
 	Vector2 mBlockPos;
 
-	// block direction 
-	int mBlockDir;
+	// block Y direction 
+	int mBlockDirY;
+
+	// block X direction
+	int mBlockDirX;
 };
